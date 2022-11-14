@@ -11,6 +11,7 @@ G2 = (graph({'0':{'1':3.2}, '1':{'1':3.2}, '2':{}}).G)
 
 
 
+
 class MyTestCase(unittest.TestCase):
 
 # I'm testing the "is_path" function. 
@@ -67,14 +68,29 @@ class MyTestCase(unittest.TestCase):
 
 # I'm testing the "find_min_weight" function.
     def test_find_min_weight_1(self):
-       result = kruskal.find_min_weight(G1)
-       self.assertEqual(['0', '1', 0.1], result)
+
+        #Given
+        G1 = (graph({'0': {'1': 0.1, '2': 0.2}, '1': {'0': 0.1}, '2': {'0': 0.2}}).G)
+        expected_result= ['0', '1', 0.1]
+        #When
+        result = kruskal.find_min_weight(G1)
+
+        #Then
+        self.assertEqual(expected_result, result)
+
+
+        # self.assertEqual(['0', '1', 0.1], result)
+
+
+       # result = kruskal.find_min_weight(G1)
+       # self.assertEqual(['0', '1', 0.1], result)
 
     def test_find_min_weight_2(self):
        result = kruskal.find_min_weight(G2)
        self.assertEqual(['0', '1', 3.2], result)
 
 # I'm testing the "kruskal" function.
+
 
 
 if __name__ == '__kruskal__':
