@@ -130,37 +130,34 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(result in [expected_result1, expected_result2, expected_result3,
                                    expected_result4, expected_result5, expected_result6])
 
-    def test_christofides_1(self):
+    def test_christofides1(self):
         # Given
-        D1 = graph({'0': {'1': 1, '2': 20, '3': 2}, '1': {'0': 1, '2': 28, '3': 5},
-                    '2': {'0': 20, '1': 28, '3': 32}, '3': {'0': 2, '1': 5, '2': 32}})
-        expected_result1 = ['0', '3', '1', '2']
-        expected_result2 = ['2', '0', '3', '1']
-        expected_result3 = ['1', '2', '0', '3']
-        expected_result4 = ['3', '1', '2', '0']
-        expected_result5 = ['0', '2', '1', '3']
-        expected_result6 = ['3', '0', '2', '1']
-        expected_result7 = ['1', '3', '0', '2']
-        expected_result8 = ['2', '1', '3', '0']
-        expected_result9 = ['0', '2', '3', '1']
-        expected_result10 = ['1', '0', '2', '3']
-        expected_result11 = ['3', '1', '0', '2']
-        expected_result12 = ['2', '3', '1', '0']
-        expected_result13 = ['0', '1', '3', '2']
-        expected_result14 = ['2', '0', '1', '3']
-        expected_result15 = ['3', '2', '0', '1']
-        expected_result16 = ['1', '3', '2', '0']
+        D1 = graph({'0': {'1': 1, '2': 30, '3': 2}, '1': {'0': 1, '2': 29, '3': 3},
+                    '2': {'0': 30, '1': 29, '3': 32}, '3': {'0': 2, '1': 3, '2': 32}})
+        expected_result1 = ['0', '3', '2', '1']
+        expected_result2 = ['1', '0', '3', '2']
+        expected_result3 = ['2', '1', '0', '3']
+        expected_result4 = ['3', '2', '1', '0']
+        expected_result5 = ['0', '1', '2', '3']
+        expected_result6 = ['3', '0', '1', '2']
+        expected_result7 = ['2', '3', '0', '1']
+        expected_result8 = ['1', '2', '3', '0']
 
         # When
         result = christofides(D1)
 
+        result_cost = 0
+        for k in range(len(result) - 1):
+            result_cost = result_cost + D1.G[result[k]][result[k + 1]]
+
+        result_cost = result_cost + D1.G[result[0]][result[len(result) - 1]]
+
         # Then
         self.assertTrue(result in [expected_result1, expected_result2, expected_result3, expected_result4,
-                                   expected_result5, expected_result6, expected_result7, expected_result8,
-                                   expected_result9, expected_result10, expected_result11, expected_result12,
-                                   expected_result13, expected_result14, expected_result15, expected_result16])
+                                   expected_result5, expected_result6, expected_result7, expected_result8
+                                   and result_cost <= 96])
 
-    def test_christofides_2(self):
+    def test_christofides2(self):
         # Given
         D2 = graph({'0': {'1': 3, '2': 3}, '1': {'0': 3, '2': 3}, '2': {'0': 3, '1': 3}})
         expected_result1 = ['0', '1', '2']
@@ -173,14 +170,20 @@ class MyTestCase(unittest.TestCase):
         # When
         result = christofides(D2)
 
+        result_cost = 0
+        for k in range(len(result) - 1):
+            result_cost = result_cost + D2.G[result[k]][result[k + 1]]
+
+        result_cost = result_cost + D2.G[result[0]][result[len(result) - 1]]
+
         # Then
         self.assertTrue(result in [expected_result1, expected_result2, expected_result3,
-                                   expected_result4, expected_result5, expected_result6])
+                                   expected_result4, expected_result5, expected_result6] and result_cost <= 13.5)
 
-    def test_christofides_3(self):
+    def test_christofides3(self):
         # Given
-        D3 = graph({'0': {'1': 2, '2': 270, '3': 1000}, '1': {'0': 2, '2': 15, '3': 120},
-                    '2': {'0': 270, '1': 15, '3': 50}, '3': {'0': 1000, '1': 120, '2': 50}})
+        D3 = graph({'0': {'1': 120, '2': 270, '3': 100}, '1': {'0': 120, '2': 150, '3': 120},
+                    '2': {'0': 270, '1': 150, '3': 250}, '3': {'0': 100, '1': 120, '2': 250}})
         expected_result1 = ['0', '3', '2', '1']
         expected_result2 = ['1', '0', '3', '2']
         expected_result3 = ['2', '1', '0', '3']
@@ -189,14 +192,46 @@ class MyTestCase(unittest.TestCase):
         expected_result6 = ['3', '0', '1', '2']
         expected_result7 = ['2', '3', '0', '1']
         expected_result8 = ['1', '2', '3', '0']
+        expected_result9 = ['0', '2', '1', '3']
+        expected_result10 = ['3', '0', '2', '1']
+        expected_result11 = ['1', '3', '0', '2']
+        expected_result12 = ['2', '1', '3', '0']
+        expected_result13 = ['0', '3', '1', '2']
+        expected_result14 = ['2', '0', '3', '1']
+        expected_result15 = ['1', '2', '0', '3']
+        expected_result16 = ['3', '1', '2', '0']
 
         # When
         result = christofides(D3)
 
+        result_cost = 0
+        for k in range(len(result) - 1):
+            result_cost = result_cost + D3.G[result[k]][result[k + 1]]
+
+        result_cost = result_cost + D3.G[result[0]][result[len(result) - 1]]
+
         # Then
         self.assertTrue(result in [expected_result1, expected_result2, expected_result3, expected_result4,
-                                   expected_result5, expected_result6, expected_result7, expected_result8])
+                                   expected_result5, expected_result6, expected_result7, expected_result8,
+                                   expected_result9, expected_result10, expected_result11, expected_result12,
+                                   expected_result13, expected_result14, expected_result15, expected_result16]
+                        and result_cost <= 930)
+
+    def test_christofides_4(self):
+        # Given
+        D4 = graph({'0': {'1': 2, '2': 270, '3': 1000}, '1': {'0': 2, '2': 15, '3': 120},
+                    '2': {'0': 270, '1': 15, '3': 50}, '3': {'0': 1000, '1': 120, '2': 50}})
+        expected = nx.approximation.traveling_salesman_problem(D4.to_nx(), cycle=False)
+
+        # When
+        result = christofides(D4)
+        same_results = []
+        for i in range(1, 4):
+            same_results.append([result[(0 + i) % 4], result[(1 + i) % 4], result[(2 + i) % 4], result[(3 + i) % 4]])
+
+        # Then
+        self.assertTrue(expected in same_results)
 
 
-if __name__ == '__christofides__':
-    unittest.christofides()
+if __name__ == '__main__':
+    unittest.main()

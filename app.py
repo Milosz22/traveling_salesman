@@ -12,9 +12,9 @@ line 3 numbers a, b, v separated by a space. m is the number of edges of graph, 
 is the weight of the edges between them.'''
 
 
-def load_graph_from_file():
+def load_graph_from_file(filepath):
     D = {}  # this will be the graph we load
-    file = "Examples/example_in.txt"
+    file = filepath
 
     with open(file) as f:
         for line in f.readlines():
@@ -27,7 +27,7 @@ def load_graph_from_file():
     global graph_example
     graph_example = D
 
-    return
+    return graph_example
 
 
 '''The function takes a graph from the global variable graph_example, calls kruskal on it 
@@ -52,9 +52,9 @@ def save_kruskal_graph_to_file():
     return
 
 
-def save_christo_graph_to_file():
-    file = "Examples/example_out.txt"
-    hamilton = christofides(graph(graph_example))
+def save_christo_graph_to_file(graph_to_save, filepath):
+    file = filepath
+    hamilton = christofides(graph(graph_to_save))
 
     f = open(file, "w")  # "w" means that if the file did not exist it will create it, if it exists it will overwrite it
     for v in hamilton:
@@ -70,9 +70,9 @@ def end_app():
     sys.exit()
 
 
-myButton1 = Button(root, text="Load graph from file", padx=50, pady=50, font=50, command=load_graph_from_file)
+myButton1 = Button(root, text="Load graph from file", padx=50, pady=50, font=50, command=load_graph_from_file("Examples/example_in.txt"))
 myButton2 = Button(root, text="Save christofides graph to file", padx=50, pady=50, font=50,
-                   command=save_christo_graph_to_file)
+                   command=save_christo_graph_to_file(graph_example, "Examples/example_out.txt"))
 myButton3 = Button(root, text="End process", padx=50, pady=50, font=50, command=end_app)
 myButton1.grid(row=1)
 myButton2.grid(row=2)

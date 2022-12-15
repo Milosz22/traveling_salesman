@@ -11,10 +11,10 @@ class graph():
         if type(M) == tajp:
             self.G = {}
             for v in M.nodes:
-                self.G[v] = {}
+                self.G[str(v)] = {}
             for (v, w) in M.edges:
-                self.G[v][w] = M.get_edge_data(v, w)['weight']
-                self.G[w][v] = M.get_edge_data(v, w)['weight']
+                self.G[str(v)][str(w)] = M.get_edge_data(v, w)['weight']
+                self.G[str(w)][str(v)] = M.get_edge_data(v, w)['weight']
             return
         if type(M) != list:
             raise Exception("sorry, wrong type")

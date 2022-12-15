@@ -3,7 +3,7 @@ import copy
 
 
 def is_path(G, a, b):
-    ''' true if htere is a path from a to b in G else false, bfss'''
+    ''' true if there is a path from a to b in G else false, bfss'''
     visited = []
     q = []
     visited.append(a)
@@ -76,4 +76,3 @@ def kruskal(Gr):
         del graf.G[d][c]
 
     return T
-
