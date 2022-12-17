@@ -1,6 +1,6 @@
 import unittest
 from App.app_functions import *
-from Christofides.christofides import *
+from Algorithm.christofides import *
 
 
 class MyTestCase(unittest.TestCase):

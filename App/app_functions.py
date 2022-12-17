@@ -1,6 +1,6 @@
-from Christofides.kruskal import kruskal
-from Christofides.christofides import christofides
-from Christofides.graph import *
+from Algorithm.kruskal import kruskal
+from Algorithm.christofides import christofides
+from Algorithm.graph import *
 import sys
 
 '''The function loads a graph from a file and saves it to a global variable graph_example.
