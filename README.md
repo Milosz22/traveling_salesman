@@ -1,5 +1,5 @@
 # Komiwojażer dla kurierów  
-*Algorytm aproksymacyjny Christofides'a*  
+*Algorytm aproksymacyjny Christofides'a*   
 Projekt Zespołowy, MCB 2022
 <br />  
 ## 1 Opis problemu  
