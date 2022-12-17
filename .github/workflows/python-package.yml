@@ -37,7 +37,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        python -m unittest Tests.test_kruskal.py
-        python -m unittest Tests.test_christofides.py
-        python -m unittest Tests.test_graph.py
-        python -m unittest Tests.test_app.py
+        python -m unittest Tests/test_kruskal.py
+        python -m unittest Tests/test_christofides.py
+        python -m unittest Tests/test_graph.py
+        python -m unittest Tests/test_app.py
