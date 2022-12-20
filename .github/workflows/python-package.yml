@@ -40,3 +40,4 @@ jobs:
         python -m unittest Tests/test_kruskal.py
         python -m unittest Tests/test_christofides.py
         python -m unittest Tests/test_graph.py
+        python -m unittest Tests/test_app.py
