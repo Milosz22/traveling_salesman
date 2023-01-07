@@ -1,8 +1,10 @@
+import math
+
 import networkx as nx
 
 
 class graph():
-    def __init__(self, M):
+    def __init__(self, M, coordinates=0):
         ''' M can be a dictionary or an adjacency matrix (list of lists) '''
         if type(M) == dict:
             self.G = M
@@ -19,6 +21,16 @@ class graph():
         if type(M) != list:
             raise Exception("sorry, wrong type")
         # here i assume M is an adjacency matrix
+        if coordinates == 1:
+            n = len(M)
+            self.G = {}
+            for i in range(n):
+                self.G[i] = {}
+                for j in range(n):
+                    if j != i:
+                        self.G[i][j] = math.sqrt((M[j][0] - M[i][0]) ** 2 + (M[j][1] - M[i][1]) ** 2)
+            return
+
         n = len(M)
 
         self.G = {}

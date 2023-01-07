@@ -33,6 +33,18 @@ class MyTestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected_result, result)
 
+    def test_init_coordinates(self):
+        # Given
+        G1 = [[0, 2], [3, 2], [3, -2]]
+        G1_graph = graph(G1, coordinates=1)
+        expected_result = {0: {1: 3.0, 2: 5.0}, 1: {0: 3.0, 2: 4.0}, 2: {0: 5.0, 1: 4.0}}
+
+        # When
+        result = G1_graph.G
+
+        # Then
+        self.assertEqual(expected_result, result)
+
 
 if __name__ == '__main__':
     unittest.main()
