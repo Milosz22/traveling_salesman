@@ -5,7 +5,7 @@ root = Tk()
 
 #buttons
 myButton1 = Button(root, text="Load graph from file", padx=50, pady=50, font=50, command=load_graph_from_file(
-    "generate_graph_.txt"))
+    "generate_graph_2.txt"))
 myButton2 = Button(root, text="Save christofides graph to file", padx=50, pady=50, font=50,
                    command=save_christo_graph_to_file(load_graph_from_file("example_in.txt"),
                                                       "example_out.txt"))
