@@ -6,12 +6,10 @@ root = Tk()
 #buttons
 myButton1 = Button(root, text="Load graph from file", padx=50, pady=50, font=50, command=load_graph_from_file(
     "generate_graph_.txt"))
+
 myButton2 = Button(root, text="Save christofides graph to file", padx=50, pady=50, font=50,
-                   command=save_christo_graph_to_file(load_graph_from_file("example_in.txt"),
+                   command=save_christo_graph_to_file(load_graph_from_file_coordinates("generate_graph_2.txt"),
                                                       "example_out.txt"))
-# myButton2 = Button(root, text="Save christofides graph to file", padx=50, pady=50, font=50,
-#                    command=save_christo_graph_to_file(load_graph_from_file_1("generate_graph_2.txt"),
-#                                                       "example_out.txt"))
 myButton3 = Button(root, text="End process", padx=50, pady=50, font=50, command=end_app)
 myButton1.grid(row=1)
 myButton2.grid(row=2)

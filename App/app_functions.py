@@ -50,12 +50,6 @@ def load_graph_from_file_coordinates(filepath):
     global graph_example_1
     graph_example_1 = D
 
-    # for j in graph_example_1:
-    #     print(j)
-    #
-    # graph_object = graph(graph_example_1, 1)
-    # print(graph_object.G)
-
     return graph_example_1
 
 
@@ -65,7 +59,7 @@ and saves the result to a file. The format of the saved data is the same as in t
 
 def save_kruskal_graph_to_file():
     file = "example_out.txt"
-    my_graph = kruskal(graph(graph_example, 1))
+    my_graph = kruskal(graph(graph_example, coordinates=1))
     vertices = my_graph.items()
 
     f = open(file, "w")  # "w" means that if the file did not exist it will create it, if it exists it will overwrite it
@@ -83,12 +77,13 @@ def save_kruskal_graph_to_file():
 
 def save_christo_graph_to_file(graph_to_save, filepath):
     file = filepath
-    hamilton = christofides(graph(graph_to_save, 1))
+    hamilton = christofides(graph(graph_to_save, coordinates=1))
 
     f = open(file, "w")  # "w" means that if the file did not exist it will create it, if it exists it will overwrite it
     for v in hamilton:
-        line = ' '.join([v[0]])
+        line =str(v)
         f.write(line)
+        f.write("\n")
 
     f.close()
 
