@@ -25,10 +25,10 @@ class graph():
             n = len(M)
             self.G = {}
             for i in range(n):
-                self.G[i] = {}
+                self.G[str(i)] = {}
                 for j in range(n):
                     if j != i:
-                        self.G[i][j] = math.sqrt((M[j][0] - M[i][0]) ** 2 + (M[j][1] - M[i][1]) ** 2)
+                        self.G[str(i)][str(j)] = math.sqrt((M[j][0] - M[i][0]) ** 2 + (M[j][1] - M[i][1]) ** 2)
             return
 
         n = len(M)
