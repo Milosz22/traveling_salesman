@@ -1,6 +1,6 @@
 import random
 
-n = 10 # zadaję liczbę wierzchołków
+n = 150 # zadaję liczbę wierzchołków
 moja_lista = []
 number_of_element = 0
 for i in range(n):
