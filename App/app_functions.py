@@ -40,9 +40,12 @@ def load_graph_from_file_coordinates(filepath):
                 D[i].append(int(line[0]))
                 indeks_y = 2
 
-            if line[indeks_y + 1] != '\n':
-                helper = "".join([line[indeks_y], line[indeks_y + 1]])
-                D[i].append(int(helper))
+            if len(line)-1 > indeks_y:
+                if line[indeks_y + 1] != '\n':
+                    helper = "".join([line[indeks_y], line[indeks_y + 1]])
+                    D[i].append(int(helper))
+                else:
+                    D[i].append(int(line[indeks_y]))
             else:
                 D[i].append(int(line[indeks_y]))
             i = i + 1
