@@ -1,6 +1,6 @@
 import random
 
-n = 150 # zadaję liczbę wierzchołków
+n = 15 # zadaję liczbę wierzchołków
 moja_lista = []
 number_of_element = 0
 for i in range(n):
@@ -22,6 +22,7 @@ f = open(file, "w")
 for i in range(n):
     line = ' '.join([str(moja_lista[i][0]), str(moja_lista[i][1])])
     f.write(line)
-    f.write("\n")
+    if i != n-1:
+        f.write("\n")
 
 f.close()
