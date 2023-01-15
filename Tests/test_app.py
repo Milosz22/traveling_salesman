@@ -7,10 +7,22 @@ class MyTestCase(unittest.TestCase):
     def test_load_graph_from_file_1(self):
         # Given
         filepath = "Tests/test_load_1.txt"
-        expected_result = {"0": {"1": 1, "2": 2}, "1": {"0": 1, "2": 2}, "2": {"0": 2, "1": 2}}
+        expected_result = [[3, 1], [20, 22], [5, 24], [7, 9]]
 
         # When
-        result = load_graph_from_file(filepath)
+        result = load_graph_from_file_coordinates(filepath)
+
+        # Then
+        self.assertEqual(expected_result, result)
+
+    def test_load_graph_from_file_2(self):
+        # Given
+        filepath = "Tests/test_load_.txt"
+        expected_result = [[59, 49], [17, 93], [19, 43], [59, 86], [94, 66], [7, 6], [90, 87], [64, 86], [97, 84],
+                           [9, 26], [23, 4], [80, 15], [5, 41], [33, 59], [60, 98]]
+
+        # When
+        result = load_graph_from_file_coordinates(filepath)
 
         # Then
         self.assertEqual(expected_result, result)
