@@ -1,6 +1,5 @@
 import unittest
 from App.app_functions import *
-from Algorithm.christofides import *
 
 
 class MyTestCase(unittest.TestCase):
@@ -27,7 +26,7 @@ class MyTestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected_result, result)
 
-    def test_load_graph_from_file_2(self):
+    def test_load_graph_from_file_3(self):
         # Given
         filepath = "Tests/test_load_2.txt"
         expected_result = {"0": {"1": 1, "2": 2, "3": 3}, "1": {"0": 1, "2": 2, "3": 3}, "2": {"0": 2, "1": 2, "3": 3},
@@ -39,7 +38,7 @@ class MyTestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected_result, result)
 
-    def test_load_graph_from_file_3(self):
+    def test_load_graph_from_file_4(self):
         # Given
         filepath = "Tests/test_load_3.txt"
         expected_result = {"0": {"1": 1}, "1": {"0": 1}}
