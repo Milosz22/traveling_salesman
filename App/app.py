@@ -1,9 +1,26 @@
+import time
+from functools import partial
+from kivy.clock import Clock
+
 from app_functions import *
 from kivy.uix.floatlayout import FloatLayout
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.graphics import Rectangle
 from kivy.uix.label import Label
+from threading import Thread
+
+G = graph(load_graph_from_file_coordinates("generate_graph_2.txt"), coordinates=1)
+
+
+def time_it(Gr):
+    start = time.time()
+    christofides(Gr)
+    end = time.time()
+    return end - start
+
+
+sec = time_it(G) * 2.5
 
 
 class Background(FloatLayout):
@@ -18,28 +35,41 @@ class Background(FloatLayout):
                                '&utm_content=creditCopyText">Unsplash</a>',
                           font_size=5, pos=(693, 3), color=(0, 0, 0), text_size=(2000, 600))
 
-        myButton1 = Button(text="Load graph from file", font_name='Verdana.ttf', size_hint=(.5, .15), font_size=23,
-                           pos_hint={'x': .25, 'y': .65}, background_color=(0.3, 0.6, 1, 1))
-        myButton1.bind(on_press=self.callback1)
+        self.myButton1 = Button(text="Load graph from file", font_name='Verdana.ttf', size_hint=(.5, .15), font_size=23,
+                                pos_hint={'x': .25, 'y': .65}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton1.bind(on_press=self.callback1)
 
-        myButton2 = Button(text="Save christofides graph to file", font_name='Verdana.ttf', size_hint=(.6, .15),
-                           font_size=23, pos_hint={'x': .2, 'y': .45}, background_color=(0.3, 0.6, 1, 1))
-        myButton2.bind(on_press=self.callback2)
+        self.myButton2 = Button(text="Save christofides graph to file", font_name='Verdana.ttf', size_hint=(.6, .15),
+                                font_size=23, pos_hint={'x': .2, 'y': .45}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton2.bind(on_press=self.callback2)
 
-        myButton3 = Button(text="End process", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
-                           pos_hint={'x': .3, 'y': .25}, background_color=(0.3, 0.6, 1, 1))
-        myButton3.bind(on_press=self.callback3)
+        self.myButton3 = Button(text="End process", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
+                                pos_hint={'x': .3, 'y': .25}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton3.bind(on_press=self.callback3)
 
-        layout.add_widget(myButton1)
-        layout.add_widget(myButton2)
-        layout.add_widget(myButton3)
+        layout.add_widget(self.myButton1)
+        layout.add_widget(self.myButton2)
+        layout.add_widget(self.myButton3)
         layout.add_widget(self.text)
         self.add_widget(layout)
 
     def callback1(self, event):
-        load_graph_from_file_coordinates("generate_graph_2.txt")
+        self.myButton1.disabled = True
+        self.myButton2.disabled = True
+        self.myButton3.disabled = True
+        thread = Thread(target=load_graph_from_file_coordinates, args=("generate_graph_2.txt",))
+        thread.start()
+
+        Clock.schedule_once(partial(self.disable, thread), sec)
+
+    def disable(self, thread, what):
+        if not thread.is_alive():
+            self.myButton2.disabled = False
+            self.myButton3.disabled = False
+            return False
 
     def callback2(self, event):
+        self.myButton2.disabled = True
         save_christo_graph_to_file(load_graph_from_file_coordinates("generate_graph_2.txt"), "example_out.txt")
 
     def callback3(self, event):
