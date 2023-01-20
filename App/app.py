@@ -11,7 +11,7 @@ class Background(FloatLayout):
         super(Background, self).__init__(**kwargs)
         layout = FloatLayout()
         with self.canvas:
-            self.rect = Rectangle(source='background.jpg', pos=layout.pos, size=self.size)
+            self.rect = Rectangle(source="background.jpg", pos=layout.pos, size=self.size)
         self.text = Label(text='Photo by <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium'
                                '=referral&utm_content=creditCopyText">Annie Spratt</a> on <a '
                                'href="https://unsplash.com/photos/Uk3t05ndSng?utm_source=unsplash&utm_medium=referral'
@@ -50,7 +50,7 @@ class Background(FloatLayout):
         self.canvas.clear()
         self.clear_widgets()
         with self.canvas:
-            self.rect = Rectangle(source='background.jpg', pos=self.pos, size=self.size)
+            self.rect = Rectangle(source="background.jpg", pos=self.pos, size=self.size)
         for widget in widgets:
             self.add_widget(widget)
 
