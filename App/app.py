@@ -64,12 +64,12 @@ class Background(FloatLayout):
 
     def disable(self, thread, what):
         if not thread.is_alive():
+            self.myButton1.disabled = False
             self.myButton2.disabled = False
             self.myButton3.disabled = False
             return False
 
     def callback2(self, event):
-        self.myButton2.disabled = True
         save_christo_graph_to_file(load_graph_from_file_coordinates("generate_graph_2.txt"), "example_out.txt")
 
     def callback3(self, event):
