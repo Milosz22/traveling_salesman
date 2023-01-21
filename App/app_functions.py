@@ -1,6 +1,9 @@
 from Algorithm.kruskal import kruskal
 from Algorithm.christofides import christofides
 from Algorithm.graph import *
+import networkx
+import matplotlib.pyplot as plt
+import random
 import sys
 
 '''The function loads a graph from a file and saves it to a global variable graph_example.
@@ -92,6 +95,34 @@ def save_christo_graph_to_file(graph_to_save, filepath):
 
     return
 
+
+def draw(L):
+
+    G = graph(L, coordinates=1)
+    H=christofides(G)
+    Gnx = nx.Graph()
+    i = 0
+    for [a, b] in L:
+        Gnx.add_node(str(i), pos=(a, b))
+        i += 1
+    for i in range(len(H)-1):
+        Gnx.add_edge(H[i],H[i+1])
+    Gnx.add_edge(H[0], H[-1])
+    color=[]
+    c=0
+    for node in Gnx:
+        if c==0:
+            color.append('red')
+            c=1
+        else:
+            color.append('yellow')
+    nx.draw(Gnx, nx.get_node_attributes(Gnx, 'pos'), with_labels=True, node_size=300,node_color=color)
+    pos = nx.spring_layout(Gnx)
+    for node, (x, y) in pos.items():
+        plt.text(x, y, node, fontsize=0.5, ha='center', va='center')
+    plt.show()
+
+#draw([[random.randint(1, 50), random.randint(1, 50)] for i in range(15)])
 
 def end_app():
     sys.exit()
