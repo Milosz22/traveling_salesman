@@ -14,7 +14,7 @@ def time_it(n):
     return end-start
 
 
-for i in [25,50,100,150,200,300,500,1000]:
+for i in [2000]:
     print("dla danych wielkosci n="+str(i)+" czas na wykonianie alg wynosi "+str(round(time_it(i),4))+" sekund")
 
 

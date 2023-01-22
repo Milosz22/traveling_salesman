@@ -34,20 +34,20 @@ class Background(FloatLayout):
                                '&utm_content=creditCopyText">Unsplash</a>',
                           font_size=5, pos=(693, 3), color=(0, 0, 0), text_size=(2000, 600))
 
-        self.myButton1 = Button(text="Load graph from file", font_name='Verdana.ttf', size_hint=(.5, .15), font_size=23,
-                                pos_hint={'x': .25, 'y': .65}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton1 = Button(text="Load Map", font_name='Verdana.ttf', size_hint=(.4, .15), font_size=23,
+                                pos_hint={'x': .3, 'y': .65+0.05}, background_color=(0.3, 0.6, 1, 1))
         self.myButton1.bind(on_press=self.callback1)
 
-        self.myButton2 = Button(text="Save christofides graph to file", font_name='Verdana.ttf', size_hint=(.6, .15),
-                                font_size=23, pos_hint={'x': .2, 'y': .45}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton2 = Button(text="View Route", font_name='Verdana.ttf', size_hint=(.4, .15),
+                                font_size=23, pos_hint={'x': .3, 'y': .25+0.05}, background_color=(0.3, 0.6, 1, 1))
         self.myButton2.bind(on_press=self.callback2)
 
-        self.myButton3 = Button(text="End process", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
-                                pos_hint={'x': .3, 'y': .25}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton3 = Button(text="Exit", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
+                                pos_hint={'x': .3, 'y': .05+0.05}, background_color=(0.3, 0.6, 1, 1))
         self.myButton3.bind(on_press=self.callback3)
 
-        self.myButton4 = Button(text="Use client's graph", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
-                                pos_hint={'x': .3, 'y': .05}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton4 = Button(text="Find Route", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
+                                pos_hint={'x': .3, 'y': .45+0.05}, background_color=(0.3, 0.6, 1, 1))
         self.myButton4.bind(on_press=self.callback4)
 
         layout.add_widget(self.myButton1)
@@ -74,7 +74,8 @@ class Background(FloatLayout):
             return False
 
     def callback2(self, event):
-        save_christo_graph_to_file(load_graph_from_file_coordinates("generate_graph_2.txt"), "example_out.txt")
+        draw_graph()
+
 
     def callback3(self, event):
         end_app()
