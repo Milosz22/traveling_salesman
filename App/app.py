@@ -12,7 +12,6 @@ from threading import Thread
 
 G = graph(load_graph_from_file_coordinates("generate_graph_2.txt"), coordinates=1)
 
-
 def time_it(Gr):
     start = time.time()
     christofides(Gr)
@@ -47,9 +46,14 @@ class Background(FloatLayout):
                                 pos_hint={'x': .3, 'y': .25}, background_color=(0.3, 0.6, 1, 1))
         self.myButton3.bind(on_press=self.callback3)
 
+        self.myButton4 = Button(text="Use client's graph", font_name='Verdana.ttf', font_size=23, size_hint=(.4, .15),
+                                pos_hint={'x': .3, 'y': .05}, background_color=(0.3, 0.6, 1, 1))
+        self.myButton4.bind(on_press=self.callback4)
+
         layout.add_widget(self.myButton1)
         layout.add_widget(self.myButton2)
         layout.add_widget(self.myButton3)
+        layout.add_widget(self.myButton4)
         layout.add_widget(self.text)
         self.add_widget(layout)
 
@@ -74,6 +78,9 @@ class Background(FloatLayout):
 
     def callback3(self, event):
         end_app()
+
+    def callback4(self, event):
+        load_client_vertices_and_save_to_file("adress.txt")
 
     def resize(self, *_):
         widgets = self.children[:]

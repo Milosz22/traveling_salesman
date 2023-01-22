@@ -11,6 +11,9 @@ I adopt the convention according to which the graph in the file is written in th
 line 3 numbers a, b, v separated by a space. m is the number of edges of graph, a and b are vertices, and v
 is the weight of the edges between them.'''
 
+main_map_graph = {}
+
+
 def load_graph_from_file(filepath):
     D = {}  # this will be the graph we load
     file = filepath
@@ -25,6 +28,8 @@ def load_graph_from_file(filepath):
             D[a][b] = int(v)
     global graph_example
     graph_example = D
+    global main_map_graph
+    main_map_graph = graph(D)
 
     return graph_example
 
@@ -55,6 +60,8 @@ def load_graph_from_file_coordinates(filepath):
 
     global graph_example_1
     graph_example_1 = D
+    global main_map_graph
+    main_map_graph = graph(D, coordinates=1)
 
     return graph_example_1
 
@@ -123,6 +130,37 @@ def draw(L):
     plt.show()
 
 #draw([[random.randint(1, 50), random.randint(1, 50)] for i in range(15)])
+
+
+# For this function to work properly you must first call load_graph_from_file function
+# in order to use global variable main_map_graph.
+def load_client_vertices_and_save_to_file(client_graph_filepath):
+    CL = []  # We will read customer vertices to this list
+    file = client_graph_filepath
+    with open(file) as f:
+        for line in f.readlines():
+            CL.append(line)
+            CL[len(CL) - 1] = CL[len(CL) - 1].strip()  # Delete '\n' at the end of every line
+
+    # Check if CL contains correct veritces for our graph
+    CL_int = [int(x) for x in CL]
+    min_CL = min(CL_int)
+    max_CL = max(CL_int)
+    if min_CL < 0 or max_CL >= len(main_map_graph.G):
+        print("Wrong vertice in customer list!")
+        return
+
+    CD = {}  # Customer graph in form of dictionary
+
+    for v in main_map_graph.G:
+        if v in CL:
+            CD[v] = {}
+            for v2 in main_map_graph.G[v]:
+                if v2 in CL:
+                    CD[v].update({v2: main_map_graph.G[v][v2]})
+
+    save_christo_graph_to_file(CD, "customer_result.txt")
+
 
 def end_app():
     sys.exit()
