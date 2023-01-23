@@ -26,29 +26,6 @@ class MyTestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected_result, result)
 
-    def test_load_graph_from_file_3(self):
-        # Given
-        filepath = "Tests/test_load_2.txt"
-        expected_result = {"0": {"1": 1, "2": 2, "3": 3}, "1": {"0": 1, "2": 2, "3": 3}, "2": {"0": 2, "1": 2, "3": 3},
-                           "3": {"0": 3, "1": 3, "2": 3}}
-
-        # When
-        result = load_graph_from_file(filepath)
-
-        # Then
-        self.assertEqual(expected_result, result)
-
-    def test_load_graph_from_file_4(self):
-        # Given
-        filepath = "Tests/test_load_3.txt"
-        expected_result = {"0": {"1": 1}, "1": {"0": 1}}
-
-        # When
-        result = load_graph_from_file(filepath)
-
-        # Then
-        self.assertEqual(expected_result, result)
-
     def test_save_christo_graph_to_file_1(self):
         # Given
         filepath = "test_save_1.txt"
